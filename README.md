@@ -21,5 +21,5 @@ Different probability models are fitted to the input data set (eff_sand.mat) and
 #### 4) gen_samples_sand.m
 Using the most suitable probability distributions for the variable, random samples are generated applying the Nataf transformation to model the correlation between the variable using a Gaussian copula. The generated random samples are then stored in an excel file (samples_sand.xlsx).
 
-#### 5) bn_final_thesis.xdsl
+#### 5) bn_final.xdsl
 The computations of the Bayesian network are made with this file, corresponding to the software GeNIe. This file receives the input data from samples_sand.xlsx and computes the conditional probability tables of the network using the Expectation-Maximization algorithm. Further analysis of the network are done with this file in GeNIe.
