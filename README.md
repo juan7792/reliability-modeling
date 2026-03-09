@@ -1,25 +1,90 @@
 # Reliability Modeling
-The codes were written in MATLAB R2019b using the Statistics and Machine Learning Toolbox. The functions are part of the methodology used to apply statistical and probabilistic approaches to develop a Bayesian network. The computation of the conditional probability tables were computed using the expectation-maximization algorithm in GeNIe Modeler 2.4. The flowchart of the thesis can be found in the file __reliability-modeling-architecture.pdf__.
 
+This repository contains MATLAB scripts used to perform probabilistic reliability modeling for a water treatment system.  
+The methodology combines statistical analysis, probability distribution fitting, and Monte Carlo sampling to construct a Bayesian Network for reliability assessment.
 
-## Summary
+The scripts were developed in **MATLAB R2019b** using the **Statistics and Machine Learning Toolbox**, while the Bayesian Network was implemented using **GeNIe Modeler 2.4**.
 
-### Files
+The overall workflow of the methodology is illustrated in:
 
-#### 1) statistical_parameters_eff_sand.m
-This file computes the mean value, standard deviation and coefficient of variance of the input data set (eff_sand.mat). The summary of the computations are stored in a table 
-(matlab_statistical_parameters.xlsx).
+**docs/reliability-modeling-architecture.pdf**
 
-#### 2) correlations_ant_sand.m
-This code takes the input data sets (eff_ant.mat, eff_sand.mat and do_consump.mat) to compute the correlation coefficient between the variables and generate the scatter plots of 
-one data set versus the other. The correlation coefficients are stored in a table (matlab_correlations_ant_sand.xlsx).
+---
 
-#### 3) distribution_fittings_eff_sand.m
-Different probability models are fitted to the input data set (eff_sand.mat) and the maximum likelihood estimator is computed. The results of the latter are stored in a table 
-(matlab_distribution_fittings_eff_sand.xlsx).
+# Methodology Overview
 
-#### 4) gen_samples_sand.m
-Using the most suitable probability distributions for the variable, random samples are generated applying the Nataf transformation to model the correlation between the variable using a Gaussian copula. The generated random samples are then stored in an excel file (samples_sand.xlsx).
+The modeling workflow includes the following steps:
 
-#### 5) bn_final.xdsl
-The computations of the Bayesian network are made with this file, corresponding to the software GeNIe. This file receives the input data from samples_sand.xlsx and computes the conditional probability tables of the network using the Expectation-Maximization algorithm. Further analysis of the network are done with this file in GeNIe.
+1. Compute statistical parameters of the observed variables
+2. Analyze correlations between variables
+3. Fit probability distributions to the data
+4. Generate correlated random samples using the **Nataf transformation**
+5. Build and analyze a **Bayesian Network** using the generated samples
+
+---
+
+# Technologies
+
+- MATLAB
+- Statistical Modeling
+- Probability Distributions
+- Monte Carlo Simulation
+- Bayesian Networks
+- GeNIe Modeler
+
+---
+
+# Project Structure
+
+## Statistical analysis
+
+### `statistical_parameters_eff_sand.m`
+Computes the **mean, standard deviation, and coefficient of variation** for the input dataset (`eff_sand.mat`).  
+The results are exported to:
+
+`matlab_statistical_parameters.xlsx`
+
+---
+
+### `correlations_ant_sand.m`
+Computes **correlation coefficients** between the datasets:
+
+- `eff_ant.mat`
+- `eff_sand.mat`
+- `do_consump.mat`
+
+The script also generates **scatter plots** and exports the results to:
+
+`matlab_correlations_ant_sand.xlsx`
+
+---
+
+### `distribution_fittings_eff_sand.m`
+Fits multiple **probability distributions** to the dataset `eff_sand.mat` using **Maximum Likelihood Estimation (MLE)**.
+
+The results are exported to:
+
+`matlab_distribution_fittings_eff_sand.xlsx`
+
+---
+
+## Sample generation
+
+### `gen_samples_sand.m`
+Generates correlated random samples using the selected probability distributions.  
+The correlation structure is modeled using the **Nataf transformation with a Gaussian copula**.
+
+Generated samples are stored in:
+
+`samples_sand.xlsx`
+
+---
+
+## Bayesian Network
+
+### `bn_final.xdsl`
+Bayesian Network model implemented in **GeNIe Modeler**.
+
+The network uses the generated samples (`samples_sand.xlsx`) to compute the **Conditional Probability Tables (CPTs)** using the **Expectation–Maximization algorithm**.
+
+Further analysis of the system reliability can be performed using this model in GeNIe.
